@@ -12,10 +12,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  module: {
-    publicPath:
-      process.env.NODE_ENV === 'production'
-        ? '/alexpxcell.github.io/' // Replace with your repo name
-        : '/',
-  },
 })
