@@ -1,0 +1,149 @@
+<template>
+  <div id="app">
+    <!-- Hero Section -->
+    <section id="hero">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Your tagline or introduction goes here.</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a passionate developer/designer/creator with experience in web and application
+        development.
+      </p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <h2>My Work</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item" v-for="item in portfolioItems" :key="item.id">
+          <img :src="item.image" :alt="item.title" />
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form @submit.prevent="handleSubmit">
+        <label for="name">Name</label>
+        <input type="text" id="name" v-model="form.name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" v-model="form.email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" v-model="form.message" required></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      portfolioItems: [
+        {
+          id: 1,
+          image: 'project1.jpg',
+          title: 'Project One',
+          description: 'A brief description of project one.',
+        },
+        {
+          id: 2,
+          image: 'project2.jpg',
+          title: 'Project Two',
+          description: 'A brief description of project two.',
+        },
+        {
+          id: 3,
+          image: 'project3.jpg',
+          title: 'Project Three',
+          description: 'A brief description of project three.',
+        },
+      ],
+      form: {
+        name: '',
+        email: '',
+        message: '',
+      },
+    }
+  },
+  methods: {
+    handleSubmit() {
+      alert(`Thank you, ${this.form.name}. Your message has been sent successfully!`)
+      this.form.name = ''
+      this.form.email = ''
+      this.form.message = ''
+    },
+  },
+}
+</script>
+
+<style scoped>
+#app {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.portfolio-item {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>

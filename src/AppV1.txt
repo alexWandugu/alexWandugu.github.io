@@ -1,0 +1,72 @@
+<template>
+  <div>{{ greeting }} {{ name }}</div>
+  <div v-bind:id="headingId" class = "underline"><h2 v-html="heading"></h2></div>
+  
+  <button v-bind:disabled="isDisabled">Bind</button>
+  <h3 class="underline" v-bind:class="status">Status</h3>
+  <h4 v-bind:class="isPromoted && 'promoted'">Promote us</h4>
+  <h5 v-bind:class="isSoldOut? 'sold-out':'new' ">Movie</h5>
+  <h4 v-bind:class="['new','promoted']">New Promo</h4>
+  <h4 v-bind:class="[isPromoted && 'promoted',isSoldOut? 'sold-out':'new']">
+  array styled Movie
+  </h4>
+  <h4 v-bind:class="{
+    'sold-out':isSoldOut,
+    new       :!isSoldOut,
+    promoted  :isPromoted 
+  }">
+  conditional style movie
+  </h4>
+  
+</template>
+
+<script>
+export default{
+  name: "App",
+  data(){
+    return{
+      greeting: 'Hello',
+      name: "Alex Thiong'o",
+      heading: '<b> My <i>Portfolio</i> </b>',
+      headingId: 'heading',
+      isDisabled: false,
+      status:'danger',
+      isPromoted : true,
+      isSoldOut : false,
+    };
+  }, 
+};
+</script>
+
+<style>
+#app{ 
+  font-family: Avenir,Helvetica,Arial,sans-serif;
+  text-align:center;
+  color : blue;
+  margin-top: 100px;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.danger{
+  color: red;
+}
+
+.success{
+  color: green;
+}
+
+.promoted{
+  font-style: italic;
+}
+
+.new{
+  color: olivedrab;
+}
+
+.sold-out{
+  color: red;
+}
+</style>
