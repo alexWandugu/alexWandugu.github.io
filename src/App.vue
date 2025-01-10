@@ -230,16 +230,6 @@ export default {
 <style scoped>
 /* General Styles */
 
-html {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
 #app {
   font-family: Arial, sans-serif;
   line-height: 1.6;
