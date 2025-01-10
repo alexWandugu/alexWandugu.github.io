@@ -229,11 +229,18 @@ export default {
 
 <style scoped>
 /* General Styles */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   /*color: #333;*/
-  max-width: 100%;
+  max-width: 100vw;
   margin: 0px;
   padding: 20px;
 }
