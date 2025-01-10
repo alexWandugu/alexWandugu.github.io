@@ -230,7 +230,11 @@ export default {
 <style scoped>
 /* General Styles */
 
-html,
+html {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
