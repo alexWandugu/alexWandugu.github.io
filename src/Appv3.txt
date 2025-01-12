@@ -1,48 +1,37 @@
 <template>
+  <head>
+    <meta
+      name="description"
+      content="Portfolio of [Your Name], showcasing projects and skills for attachment opportunities."
+    />
+    <meta name="keywords" content="Portfolio, Projects, Developer, Attachment, Resume" />
+  </head>
   <div :class="{ dark: darkMode }" id="app">
-    <!-- Navigation Bar -->
+    /* Navigation Bar */
     <nav>
-      <div class="nav-container">
-        <!-- Brand Name or Logo -->
-        <div class="brand">
-          <a href="#hero" @click="toggleMenu">MyPortfolio</a>
-        </div>
-
-        <!-- Hamburger Menu (Visible on small screens) -->
-        <button class="hamburger" @click="toggleMenu" aria-label="Toggle Menu">
-          <span :class="{ open: isMenuOpen }"></span>
-          <span :class="{ open: isMenuOpen }"></span>
-          <span :class="{ open: isMenuOpen }"></span>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Reach Out</a></li>
+      </ul>
+      <div class="column">
+        <button class="download-resume" @click="downloadResume">Resume</button>
+        <span style="width: 10px"></span>
+        <button
+          @click="darkMode = !darkMode"
+          :class="{ 'buttonText-light': !darkMode, 'buttonText-dark': darkMode }"
+          class="theme-toggle-button"
+        >
+          {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
         </button>
-
-        <!-- Navigation Links -->
-
-        <ul :class="{ 'nav-links': true, open: isMenuOpen }">
-          <div class="nav-menu">
-            <li><a href="#hero" @click="closeMenu">Home</a></li>
-            <li><a href="#about" @click="closeMenu">About</a></li>
-            <li><a href="#portfolio" @click="closeMenu">Portfolio</a></li>
-            <li><a href="#contact" @click="closeMenu">Reach Out</a></li>
-          </div>
-          <!-- Resume and Theme Toggle -->
-          <div class="nav-actions">
-            <button class="download-resume" @click="(downloadResume(), closeMenu())">Resume</button>
-            <button
-              @click="((darkMode = !darkMode), closeMenu())"
-              :class="{ 'buttonText-light': !darkMode, 'buttonText-dark': darkMode }"
-              class="theme-toggle-button"
-            >
-              {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
-            </button>
-          </div>
-        </ul>
       </div>
     </nav>
 
     <!--Spacer section
     pushes the hero section below the floating nav
     making all its heading visible-->
-    <section id="hero" style="height: 15px"></section>
+    <section id="hero" style="height: 8px"></section>
     <!-- Hero Section -->
     <section class="hero">
       <h1>Welcome to My Portfolio</h1>
@@ -52,7 +41,7 @@
     <!--Spacer section
     pushes the about section below the floating nav
     making all its heading visible-->
-    <section id="about" style="height: 15px"></section>
+    <section id="about" style="height: 8px"></section>
     <!-- About Section -->
     <section class="about">
       <h2>About Me</h2>
@@ -65,7 +54,7 @@
     <!--Spacer section
     pushes the portfolio section below the floating nav
     making all its heading visible-->
-    <section id="portfolio" style="height: 15px"></section>
+    <section id="portfolio" style="height: 8px"></section>
     <!-- Portfolio Section -->
     <section>
       <h2>My Work</h2>
@@ -114,7 +103,7 @@
     <!--Spacer section
     pushes the contacct section below the floating nav
     making all its heading visible-->
-    <section id="contact" style="height: 15px"></section>
+    <section id="contact" style="height: 8px"></section>
     <!-- Contact Section -->
     <section id="contact1">
       <h2>Contact Me</h2>
@@ -179,6 +168,7 @@ export default {
           description: 'A detailed description of project three.',
         },
       ],
+
       skills: [
         { name: 'HTML', level: 90 },
         { name: 'CSS', level: 85 },
@@ -187,6 +177,7 @@ export default {
         { name: 'Python', level: 70 },
         { name: 'Flutter', level: 60 },
       ],
+
       form: {
         name: '',
         email: '',
@@ -198,7 +189,6 @@ export default {
       ],
       selectedProject: null,
       darkMode: false,
-      isMenuOpen: false, // New state for the mobile menu
     }
   },
   methods: {
@@ -218,17 +208,10 @@ export default {
       }
     },
     downloadResume() {
-      alert('Opening new tab to view my resume'),
-        window.open(
-          'https://drive.google.com/file/d/1zrzmuao6mwdxKtOVfyPp__gH5UPjxklv/view?usp=sharing',
-          '_blank',
-        )
-    },
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen
-    },
-    closeMenu() {
-      this.isMenuOpen = false
+      window.open(
+        'https://drive.google.com/file/d/1zrzmuao6mwdxKtOVfyPp__gH5UPjxklv/view?usp=sharing',
+        '_blank',
+      )
     },
   },
   created() {
@@ -246,6 +229,7 @@ export default {
 
 <style scoped>
 /* General Styles */
+
 #app {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -278,92 +262,49 @@ button {
   border: 1px solid #f4f1f1;
 }
 
+/* Navigation Bar*/
 nav {
-  background: white;
-  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  /*position: absolute;
   top: 0;
-  z-index: 1000;
-  padding: 10px 20px;
-}
-
-.nav-container {
+  /*left: 5%;
+  width: inherit;
+  background: white;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  align-self: center;
+  position: sticky;
+  transition: color 0.3s ease-in-out;
+  border-style: inset;
+  border-right: none;
+  border-bottom: none;
 }
 
-.brand a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 30px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 1200;
-}
-
-.hamburger span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  border-radius: 4px;
-  background: #333;
-  transition: all 0.3s ease;
-}
-
-.hamburger span.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 10px);
-}
-
-.hamburger span.open:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger span.open:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -12px);
-}
-
-/* Navigation Links */
-.nav-links {
+nav ul {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
-  margin: 0 15px;
+nav ul li:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
-.nav-links a {
+nav a {
+  margin: 0 15px;
   text-decoration: none;
   color: #333;
-  font-size: 1rem;
 }
 
-.nav-links a:hover {
+nav a:hover {
+  text-decoration: underline;
   color: #58a6ff;
-}
-
-.nav-menu {
-  display: flex;
-  flex-direction: row;
-}
-
-.nav-actions {
-  display: flex;
-  gap: 10px;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 /* Theme Toggle */
@@ -572,14 +513,6 @@ textarea {
   color: rgb(220, 215, 215);
 }
 
-.dark .hamburger span {
-  background: rgb(220, 215, 215);
-}
-
-.dark .nav-links.open {
-  background: #333;
-}
-
 .dark .download-resume {
   /*background: black;*/
   color: rgb(220, 215, 215);
@@ -603,57 +536,14 @@ textarea {
   color: rgb(58, 165, 33);
 }
 
-/* Mobile Styles */
-@media (max-width: 773px) {
-  .hamburger {
-    display: flex;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
   }
 
-  .nav-menu {
-    display: flex;
+  nav ul {
     flex-direction: column;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: fit-content;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    align-items: center;
-    display: none;
-    padding-right: 10%;
-    padding-left: 3%;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-links.open {
-    display: flex;
-    transform: translateY(0);
-  }
-
-  .nav-links li {
-    margin: 15px 0;
-  }
-
-  .nav-actions {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .nav-actions .download-resume {
-    border: none;
-    font-size: medium;
-    text-align: start;
-    padding-top: 10%;
-  }
-
-  .nav-actions .theme-toggle-button {
-    border: none;
-    font-size: medium;
-    padding-top: 10%;
   }
 }
 </style>
