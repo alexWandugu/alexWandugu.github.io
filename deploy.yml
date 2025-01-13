@@ -1,0 +1,20 @@
+name: Deploy to Production
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Matches tags like v1.1, v1.2.3, etc.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Push to Production Repo
+        env:
+          TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
+        run: |
+          git remote add production https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git
+          git push production main:production
