@@ -22,8 +22,8 @@ jobs:
         env:
           TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
         run: |
-          git remote add production https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git
-          git push production main:main
+          git remote add production https://github.com/alexWandugu/alexWandugu.github.io.git
+          git push https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git main:main
 
   deploy_to_gh_pages:
     if: ${{ github.event.inputs.branch == 'gh-pages' }}
@@ -52,4 +52,3 @@ jobs:
           git add .
           git commit -m "Deploy to gh-pages"
           git push --force production gh-pages
-
