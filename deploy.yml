@@ -1,12 +1,16 @@
-name: Deploy to New Account Repository
+name: Manual Deploy to New Account Repository
 
 on:
-  push:
-    branches:
-      - main  # Trigger the workflow when changes are pushed to the main branch
+  workflow_dispatch: # Allows manual triggering via GitHub Actions UI
+    inputs:
+      branch:
+        description: 'Branch to deploy (main or gh-pages)'
+        required: true
+        default: 'main'
 
 jobs:
   deploy_to_main:
+    if: ${{ github.event.inputs.branch == 'main' }}
     name: Push Changes to Main Branch in New Repository
     runs-on: ubuntu-latest
 
@@ -18,13 +22,13 @@ jobs:
         env:
           TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
         run: |
-          git remote add production https://${TOKEN}@github.com/<new-account>/<new-repo>.git
+          git remote add production https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git
           git push production main:main
 
   deploy_to_gh_pages:
-    name: Deploy Dist Folder to gh-pages Branch
+    if: ${{ github.event.inputs.branch == 'gh-pages' }}
+    name: Deploy Dist Folder to gh-pages Branch in New Repository
     runs-on: ubuntu-latest
-    needs: deploy_to_main  # Ensures this job runs after deploy_to_main
 
     steps:
       - name: Checkout Code
@@ -40,7 +44,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
         run: |
-          git remote add production https://${TOKEN}@github.com/<new-account>/<new-repo>.git
+          git remote add production https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git
           git fetch production
           git switch --orphan gh-pages
           git rm -rf .
@@ -48,3 +52,4 @@ jobs:
           git add .
           git commit -m "Deploy to gh-pages"
           git push --force production gh-pages
+
