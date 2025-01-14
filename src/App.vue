@@ -88,7 +88,7 @@
         <span class="close" @click="selectedProject = null">&times;</span>
         <h3>{{ selectedProject.title }}</h3>
         <column class="column">
-          <img :src="selectedProject.image" :alt="selectedProject.title" class="imageViewSize" />
+          <img :src="selectedProject.image" :alt="selectedProject.title" class="imageSize" />
           <p class="imageViewSize">{{ selectedProject.description }}</p>
         </column>
       </div>
@@ -445,13 +445,17 @@ nav {
 }
 
 .imageSize {
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
 }
 
 .imageViewSize {
   max-width: 450px;
   max-height: 450px;
+  width: auto;
+  height: auto;
 }
 
 .skill {
@@ -654,6 +658,21 @@ textarea {
     border: none;
     font-size: medium;
     padding-top: 10%;
+  }
+}
+
+@media (max-width: 650px) {
+  .column {
+    padding: 2px;
+    overflow-y: auto;
+    flex-direction: column;
+  }
+
+  .imageViewSize {
+    max-width: 300px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
   }
 }
 </style>
