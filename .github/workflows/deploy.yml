@@ -20,7 +20,7 @@ jobs:
 
       - name: Push to Main Branch in New Repository
         env:
-          TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
+          TOKEN: ${ secrets.PROD_ACCESS_TOKEN }
         run: |
           git remote add production https://github.com/alexWandugu/alexWandugu.github.io.git
           git push https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git main:main
@@ -42,7 +42,7 @@ jobs:
 
       - name: Deploy Dist Folder to gh-pages
         env:
-          TOKEN: ${{ secrets.PROD_ACCESS_TOKEN }}
+          TOKEN: ${ secrets.PROD_ACCESS_TOKEN }
         run: |
           git remote add production https://${TOKEN}@github.com/alexWandugu/alexWandugu.github.io.git
           git fetch production
