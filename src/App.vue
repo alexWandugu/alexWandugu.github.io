@@ -169,13 +169,13 @@ export default {
         {
           id: 2,
           image: 'project2.jpg',
-          title: 'Project Two',
+          title: 'Project2 N/A',
           description: 'A detailed description of project two.',
         },
         {
           id: 3,
           image: 'project3.jpg',
-          title: 'Project Three',
+          title: 'Project Three N/A',
           description: 'A detailed description of project three.',
         },
       ],
