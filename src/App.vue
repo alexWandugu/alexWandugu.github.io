@@ -258,13 +258,10 @@ export default {
       this.isMenuOpen = false
     },
     //for mobile/touch devices
-    closeModal() {
-      this.isModalVisible = false
-    },
     handleScroll() {
       const modal = this.$refs.modalContent
       if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
-        console.log('Reached bottom')
+        console.log('Reached the bottom of the modal.')
       }
     },
     handleTouchStart(event) {
@@ -275,11 +272,12 @@ export default {
       const swipeDistance = this.startTouch - endTouch
 
       const modal = this.$refs.modalContent
-      if (
-        swipeDistance < -30 && // User swipes up
-        modal.scrollTop + modal.clientHeight >= modal.scrollHeight
-      ) {
-        this.closeModal()
+      const isAtBottom = modal.scrollTop + modal.clientHeight >= modal.scrollHeight
+
+      if (swipeDistance < -30 && isAtBottom) {
+        // Upward swipe detected at the bottom
+        console.log('Pull-up detected. Closing modal.')
+        this.selectedProject = null
       }
     },
   },
