@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alexwandugu.github.io/sitemap.xml
