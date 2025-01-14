@@ -83,14 +83,38 @@
     </section>
 
     <!-- Modal for Portfolio Items -->
+    <!--
     <div v-if="selectedProject" class="modal">
       <div class="modal-content">
-        <span class="close" @click="selectedProject = null">&times;</span>
-        <h3>{{ selectedProject.title }}</h3>
+        <row class="modal-head">
+          <h3>{{ selectedProject.title }}</h3>
+          <span class="close" @click="selectedProject = null">&times;</span>
+        </row>
         <column class="column">
           <img :src="selectedProject.image" :alt="selectedProject.title" class="imageSize" />
           <p class="imageViewSize">{{ selectedProject.description }}</p>
         </column>
+      </div>
+    </div>
+  -->
+    <div v-if="selectedProject" class="modal-overlay">
+      <div
+        class="modal"
+        @scroll="handleScroll"
+        @touchstart="handleTouchStart"
+        @touchend="handleTouchEnd"
+        ref="modalContent"
+      >
+        <div class="modal-content">
+          <div class="modal-head">
+            <h3>{{ selectedProject.title }}</h3>
+            <span class="close" @click="selectedProject = null">&times;</span>
+          </div>
+          <div class="modal-body">
+            <img :src="selectedProject.image" :alt="selectedProject.title" class="imageSize" />
+            <p class="imageViewSize">{{ selectedProject.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -155,6 +179,8 @@
 </template>
 
 <script>
+import { routerViewLocationKey } from 'vue-router'
+
 export default {
   data() {
     return {
@@ -199,6 +225,7 @@ export default {
       selectedProject: null,
       darkMode: false,
       isMenuOpen: false, // New state for the mobile menu
+      startTouch: 0,
     }
   },
   methods: {
@@ -229,6 +256,31 @@ export default {
     },
     closeMenu() {
       this.isMenuOpen = false
+    },
+    //for mobile/touch devices
+    closeModal() {
+      this.isModalVisible = false
+    },
+    handleScroll() {
+      const modal = this.$refs.modalContent
+      if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
+        console.log('Reached bottom')
+      }
+    },
+    handleTouchStart(event) {
+      this.startTouch = event.touches[0].clientY
+    },
+    handleTouchEnd(event) {
+      const endTouch = event.changedTouches[0].clientY
+      const swipeDistance = this.startTouch - endTouch
+
+      const modal = this.$refs.modalContent
+      if (
+        swipeDistance < -30 && // User swipes up
+        modal.scrollTop + modal.clientHeight >= modal.scrollHeight
+      ) {
+        this.closeModal()
+      }
     },
   },
   created() {
@@ -417,6 +469,29 @@ nav {
 }
 
 /* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  width: 400px;
+  max-height: 80%;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/*
 .modal {
   position: fixed;
   top: 0;
@@ -428,6 +503,16 @@ nav {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}*/
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-head h3 {
+  margin-top: 0;
 }
 
 .modal-content {
@@ -438,10 +523,14 @@ nav {
 }
 
 .modal-content .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   cursor: pointer;
+  padding: 3%;
+  font-size: large;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-around;
 }
 
 .imageSize {
@@ -514,11 +603,6 @@ nav {
 
 .skill-label:hover ~ .skill-level {
   opacity: 1;
-}
-
-.column {
-  display: flex;
-  justify-content: space-around;
 }
 
 .testimonial-item {
@@ -662,7 +746,7 @@ textarea {
 }
 
 @media (max-width: 650px) {
-  .column {
+  .modal-body {
     padding: 2px;
     overflow-y: auto;
     flex-direction: column;
@@ -670,7 +754,7 @@ textarea {
 
   .imageViewSize {
     max-width: 300px;
-    max-height: 150px;
+    max-height: 100px;
     width: auto;
     height: auto;
   }
