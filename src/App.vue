@@ -692,16 +692,6 @@ textarea {
   color: rgb(58, 165, 33);
 }
 
-.dark .modal-body::-webkit-scrollbar-track {
-  background: #0a46de; /* Background color of the scrollbar track */
-  border-radius: 4px; /* Round track edges */
-}
-
-.dark .modal::-webkit-scrollbar-thumb {
-  background: #dadada; /* Color of the scrollbar thumb */
-  border-radius: 4px; /* Round thumb edges */
-}
-
 /* Mobile Styles */
 @media (max-width: 773px) {
   .hamburger {
