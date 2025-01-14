@@ -161,7 +161,7 @@ export default {
       portfolioItems: [
         {
           id: 1,
-          image: 'src/assets/images/myProject1.jpeg',
+          image: '/images/myProject1.jpeg',
           title: 'DIY battery Pack',
           description:
             'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects. The pack combines the benefits of increased voltage (2S) and higher capacity (3P) for optimal performance. It aims to promote sustainability by repurposing 18650 Li-ion cells salvaged from damaged or unused devices. By reusing batteries, we reduce electronic waste and make the project cost-effective.',
