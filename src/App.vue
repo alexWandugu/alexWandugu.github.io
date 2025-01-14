@@ -258,7 +258,7 @@ export default {
       this.isMenuOpen = false
     },
     //for mobile/touch devices
-    handleScroll() {
+    /*handleScroll() {
       const modal = this.$refs.modalContent
       if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
         console.log('Reached the bottom of the modal.')
@@ -279,7 +279,7 @@ export default {
         console.log('Pull-up detected. Closing modal.')
         this.selectedProject = null
       }
-    },
+    },*/
   },
   created() {
     const savedTheme = localStorage.getItem('theme')
@@ -482,10 +482,9 @@ nav {
 
 .modal {
   background: white;
-  border-radius: 8px;
+  border-radius: 4.1%;
   max-width: 700px;
   max-height: 80%;
-  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -508,6 +507,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .modal-head h3 {
@@ -517,6 +517,7 @@ nav {
 .modal-content {
   background: white;
   padding: 20px;
+  border-radius: 4%;
   text-align: center;
   position: relative;
 }
