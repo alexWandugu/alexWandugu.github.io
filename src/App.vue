@@ -485,12 +485,13 @@ nav {
 .modal {
   background: white;
   border-radius: 8px;
-  width: 400px;
+  max-width: 700px;
   max-height: 80%;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
 }
+
 /*
 .modal {
   position: fixed;
@@ -689,6 +690,16 @@ textarea {
 }
 .dark .row a {
   color: rgb(58, 165, 33);
+}
+
+.dark .modal-body::-webkit-scrollbar-track {
+  background: #0a46de; /* Background color of the scrollbar track */
+  border-radius: 4px; /* Round track edges */
+}
+
+.dark .modal::-webkit-scrollbar-thumb {
+  background: #dadada; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Round thumb edges */
 }
 
 /* Mobile Styles */
