@@ -173,7 +173,12 @@
       <h2>Find Me Online</h2>
       <row style="display: flex; justify-content: space-around" class="row">
         <a href="https://github.com/alexpxcell" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
+        <a href="https://linkedin.com/in/alex-wandugu-a6250226b" target="_blank">LinkedIn</a>
+        <a
+          href="https://web.facebook.com/people/Alex-Thiongo/pfbid0k43xFKtaRk45DkT8Tn3tTnGqQn9Xqb5QNV1r3nadjB2ueBNq1sDwqd9R5RDLFdgol/"
+          target="_blank"
+          >Facebook</a
+        >
       </row>
     </footer>
   </div>
