@@ -46,7 +46,14 @@
     <!-- Hero Section -->
     <section class="hero">
       <h1>Welcome to My Portfolio</h1>
-      <p>Your tagline or introduction goes here.</p>
+      <p>
+        I am driven by curiosity and a passion for hands-on projects. I enjoy using tools like
+        Fusion 360, Tinkercad, Codewars, and SkillsBuild to turn creative ideas into functional
+        designs. Whether it’s app development or engineering design, I am fascinated by the process
+        of bringing ideas to life and will deliver exceptional results. Outside of work, I stay
+        active through swimming, cycling and working out. I also enjoy building meaningful
+        connections, fostering a supportive community with my colleagues on campus.
+      </p>
     </section>
 
     <!--Spacer section
@@ -57,14 +64,8 @@
     <section class="about">
       <h2>About Me</h2>
       <p>
-        I'm a passionate developer/designer/creator with experience in web and application
-        development, and 2D as well as 3D solid modelling. As an aspiring mechatronics engineer, I
-        am driven by curiosity and a passion for hands-on projects. I enjoy using tools like Fusion
-        360, Tinkercad, Codewars, and SkillsBuild to turn creative ideas into functional designs.
-        Whether it’s app development or engineering design, I am fascinated by the process of
-        bringing ideas to life. Outside of work, I stay active through swimming, cycling and working
-        out. I also enjoy building meaningful connections, fostering a supportive community with my
-        colleagues on campus.
+        I'm an aspiring mechatronics engineer, in my third year of studies at Jomo Kenyatta
+        University of Agriculture and Technology
       </p>
     </section>
 
@@ -207,8 +208,8 @@ export default {
         message: '',
       },
       testimonials: [
-        { id: 1, text: 'Amazing work, highly recommended!', author: 'John Doe' },
-        { id: 2, text: 'Very professional and creative.', author: 'Jane Smith' },
+        { id: 1, text: 'Amazing work, highly recommended!', author: 'Samuel Otieno' },
+        { id: 2, text: 'Very professional and creative.', author: 'Esther Wangui' },
       ],
       selectedProject: null,
       darkMode: false,
