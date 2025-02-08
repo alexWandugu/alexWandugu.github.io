@@ -58,7 +58,13 @@
       <h2>About Me</h2>
       <p>
         I'm a passionate developer/designer/creator with experience in web and application
-        development.
+        development, and 2D as well as 3D solid modelling. As an aspiring mechatronics engineer, I
+        am driven by curiosity and a passion for hands-on projects. I enjoy using tools like Fusion
+        360, Tinkercad, Codewars, and SkillsBuild to turn creative ideas into functional designs.
+        Whether it’s app development or engineering design, I am fascinated by the process of
+        bringing ideas to life. Outside of work, I stay active through swimming, cycling and working
+        out. I also enjoy building meaningful connections, fostering a supportive community with my
+        colleagues on campus.
       </p>
     </section>
 
@@ -98,13 +104,7 @@
     </div>
   -->
     <div v-if="selectedProject" class="modal-overlay">
-      <div
-        class="modal"
-        @scroll="handleScroll"
-        @touchstart="handleTouchStart"
-        @touchend="handleTouchEnd"
-        ref="modalContent"
-      >
+      <div class="modal" @scroll="handleScroll" ref="modalContent">
         <div class="modal-content">
           <div class="modal-head">
             <h3>{{ selectedProject.title }}</h3>
@@ -192,26 +192,14 @@ export default {
           description:
             'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects. The pack combines the benefits of increased voltage (2S) and higher capacity (3P) for optimal performance. It aims to promote sustainability by repurposing 18650 Li-ion cells salvaged from damaged or unused devices. By reusing batteries, we reduce electronic waste and make the project cost-effective.',
         },
-        {
-          id: 2,
-          image: 'project2.jpg',
-          title: 'Project2 N/A',
-          description: 'A detailed description of project two.',
-        },
-        {
-          id: 3,
-          image: 'project3.jpg',
-          title: 'Project Three N/A',
-          description: 'A detailed description of project three.',
-        },
       ],
       skills: [
-        { name: 'HTML', level: 90 },
-        { name: 'CSS', level: 85 },
-        { name: 'JavaScript', level: 80 },
-        { name: 'Vue.js', level: 75 },
-        { name: 'Python', level: 70 },
-        { name: 'Flutter', level: 60 },
+        { name: '2D & 3D design', level: 90 },
+        { name: 'Basic Web3 kit', level: 70 },
+        { name: 'C++', level: 80 },
+        { name: 'Vue.js', level: 60 },
+        { name: 'Python', level: 40 },
+        { name: 'Circuit design', level: 40 },
       ],
       form: {
         name: '',
@@ -258,12 +246,12 @@ export default {
       this.isMenuOpen = false
     },
     //for mobile/touch devices
-    /*handleScroll() {
+    handleScroll() {
       const modal = this.$refs.modalContent
       if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
         console.log('Reached the bottom of the modal.')
       }
-    },
+    } /*
     handleTouchStart(event) {
       this.startTouch = event.touches[0].clientY
     },
@@ -279,7 +267,7 @@ export default {
         console.log('Pull-up detected. Closing modal.')
         this.selectedProject = null
       }
-    },*/
+    },*/,
   },
   created() {
     const savedTheme = localStorage.getItem('theme')
