@@ -241,7 +241,7 @@ export default {
     downloadResume() {
       alert('Opening new tab to view my resume'),
         window.open(
-          'https://drive.google.com/file/d/1zrzmuao6mwdxKtOVfyPp__gH5UPjxklv/view?usp=sharing',
+          'https://drive.google.com/file/d/16SNvbIeKU0QvgXDkZflvtSLW4hAXuemw/view?usp=sharing',
           '_blank',
         )
     },
