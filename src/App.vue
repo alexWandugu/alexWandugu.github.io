@@ -203,21 +203,21 @@ export default {
           image: '/images/myProject1.jpeg',
           title: 'DIY Battery Pack',
           description:
-            'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects...',
+            'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects.',
         },
         {
           id: 2, // Fixed duplicate ID
           image: '/images/google-developers-logo.png',
           title: 'Google Developers Student',
           description:
-            'As a Google Developer Student, I am passionate about leveraging technology for continuous learning... <a href="https://g.dev/alexwandugu" target="_blank">View My Progress</a>',
+            'As a Google Developer Student, I am passionate about leveraging technology for continuous learning. <br> <a href="https://g.dev/alexwandugu" target="_blank" style="color:black;">View My Progress</a>',
         },
       ],
       skills: [
         { name: '2D & 3D design', level: 90 },
         { name: 'Basic Web3 kit', level: 70 },
         { name: 'C++', level: 80 },
-        { name: 'Vue.js', level: 60 },
+        { name: 'Vue', level: 60 },
         { name: 'Python', level: 40 },
         { name: 'Circuit design', level: 40 },
       ],
@@ -572,6 +572,10 @@ nav {
   max-height: 450px;
   width: auto;
   height: auto;
+}
+
+.customlink {
+  color: green !important;
 }
 
 .skill {
