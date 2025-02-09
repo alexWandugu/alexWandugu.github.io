@@ -27,12 +27,16 @@
           <!-- Resume and Theme Toggle -->
           <div class="nav-actions">
             <button class="download-resume" @click="(downloadResume(), closeMenu())">Resume</button>
-            <button
+            <!--<button
               @click="((darkMode = !darkMode), closeMenu())"
               :class="{ 'buttonText-light': !darkMode, 'buttonText-dark': darkMode }"
               class="theme-toggle-button"
             >
               {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
+            </button>-->
+            <button @click="((darkMode = !darkMode), closeMenu())" class="theme-toggle">
+              <Moon v-if="darkMode" class="icon" />
+              <Sun v-else class="icon" />
             </button>
           </div>
         </ul>
@@ -113,7 +117,7 @@
           </div>
           <div class="modal-body">
             <img :src="selectedProject.image" :alt="selectedProject.title" class="imageSize" />
-            <p class="imageViewSize">{{ selectedProject.description }}</p>
+            <p class="imageViewSize" v-html="selectedProject.description"></p>
           </div>
         </div>
       </div>
@@ -186,8 +190,10 @@
 
 <script>
 import { routerViewLocationKey } from 'vue-router'
+import { createIcons } from "lucide-vue-next";
 
 export default {
+  components: { Moon, Sun },
   data() {
     return {
       portfolioItems: [
@@ -197,6 +203,13 @@ export default {
           title: 'DIY battery Pack',
           description:
             'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects. The pack combines the benefits of increased voltage (2S) and higher capacity (3P) for optimal performance. It aims to promote sustainability by repurposing 18650 Li-ion cells salvaged from damaged or unused devices. By reusing batteries, we reduce electronic waste and make the project cost-effective.',
+        },
+        {
+          id: 1,
+          image: '/images/google-developers-logo.png',
+          title: 'Google Developers Student',
+          description:
+            'As a Google Developer Student, I am passionate about leveraging technology for continuous learning and making a meaningful impact in every way I can. \n <a href="https://g.dev/alexwandugu" target="_blank">View My Progress</a>',
         },
       ],
       skills: [
@@ -408,6 +421,29 @@ nav {
 .nav-actions {
   display: flex;
   gap: 10px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: currentColor;
 }
 
 /* Theme Toggle */
