@@ -23,10 +23,11 @@
             <li><a href="#about" @click="closeMenu">About</a></li>
             <li><a href="#portfolio" @click="closeMenu">Portfolio</a></li>
             <li><a href="#contact" @click="closeMenu">Reach Out</a></li>
+            <li><a href="#" @click="(downloadResume(), closeMenu())">Resume</a></li>
           </div>
           <!-- Resume and Theme Toggle -->
           <div class="nav-actions">
-            <button class="download-resume" @click="(downloadResume(), closeMenu())">Resume</button>
+            <!--<button class="download-resume" @click="(downloadResume(), closeMenu())">Resume</button>-->
             <!--<button
               @click="((darkMode = !darkMode), closeMenu())"
               :class="{ 'buttonText-light': !darkMode, 'buttonText-dark': darkMode }"
@@ -34,8 +35,8 @@
             >
               {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
             </button>-->
-            <button @click="((darkMode = !darkMode), closeMenu())" class="theme-toggle">
-              <Moon v-if="darkMode" class="icon" />
+            <button @click="darkMode = !darkMode" class="theme-toggle">
+              <Moon v-if="!darkMode" class="icon" />
               <Sun v-else class="icon" />
             </button>
           </div>
@@ -189,27 +190,27 @@
 </template>
 
 <script>
-import { routerViewLocationKey } from 'vue-router'
-import { createIcons } from "lucide-vue-next";
+import { ref, watch, onMounted } from 'vue'
+import { Sun, Moon } from 'lucide-vue-next'
 
 export default {
-  components: { Moon, Sun },
+  components: { Sun, Moon },
   data() {
     return {
       portfolioItems: [
         {
           id: 1,
           image: '/images/myProject1.jpeg',
-          title: 'DIY battery Pack',
+          title: 'DIY Battery Pack',
           description:
-            'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects. The pack combines the benefits of increased voltage (2S) and higher capacity (3P) for optimal performance. It aims to promote sustainability by repurposing 18650 Li-ion cells salvaged from damaged or unused devices. By reusing batteries, we reduce electronic waste and make the project cost-effective.',
+            'This project involves designing and building a 2S 3P lithium-ion battery pack suitable for powering RC cars and other DIY electronic projects...',
         },
         {
-          id: 1,
+          id: 2, // Fixed duplicate ID
           image: '/images/google-developers-logo.png',
           title: 'Google Developers Student',
           description:
-            'As a Google Developer Student, I am passionate about leveraging technology for continuous learning and making a meaningful impact in every way I can. \n <a href="https://g.dev/alexwandugu" target="_blank">View My Progress</a>',
+            'As a Google Developer Student, I am passionate about leveraging technology for continuous learning... <a href="https://g.dev/alexwandugu" target="_blank">View My Progress</a>',
         },
       ],
       skills: [
@@ -231,7 +232,7 @@ export default {
       ],
       selectedProject: null,
       darkMode: false,
-      isMenuOpen: false, // New state for the mobile menu
+      isMenuOpen: false,
       startTouch: 0,
     }
   },
@@ -252,11 +253,11 @@ export default {
       }
     },
     downloadResume() {
-      alert('Opening new tab to view my resume'),
-        window.open(
-          'https://drive.google.com/file/d/16SNvbIeKU0QvgXDkZflvtSLW4hAXuemw/view?usp=sharing',
-          '_blank',
-        )
+      alert('Opening new tab to view my resume')
+      window.open(
+        'https://drive.google.com/file/d/16SNvbIeKU0QvgXDkZflvtSLW4hAXuemw/view?usp=sharing',
+        '_blank',
+      )
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen
@@ -264,29 +265,12 @@ export default {
     closeMenu() {
       this.isMenuOpen = false
     },
-    //for mobile/touch devices
     handleScroll() {
       const modal = this.$refs.modalContent
       if (modal.scrollTop + modal.clientHeight >= modal.scrollHeight) {
         console.log('Reached the bottom of the modal.')
       }
-    } /*
-    handleTouchStart(event) {
-      this.startTouch = event.touches[0].clientY
     },
-    handleTouchEnd(event) {
-      const endTouch = event.changedTouches[0].clientY
-      const swipeDistance = this.startTouch - endTouch
-
-      const modal = this.$refs.modalContent
-      const isAtBottom = modal.scrollTop + modal.clientHeight >= modal.scrollHeight
-
-      if (swipeDistance < -30 && isAtBottom) {
-        // Upward swipe detected at the bottom
-        console.log('Pull-up detected. Closing modal.')
-        this.selectedProject = null
-      }
-    },*/,
   },
   created() {
     const savedTheme = localStorage.getItem('theme')
@@ -350,6 +334,10 @@ nav {
   align-items: center;
 }
 
+.nav-container :hover {
+  outline: none;
+}
+
 .brand a {
   font-size: 1.5rem;
   font-weight: bold;
@@ -368,6 +356,7 @@ nav {
   background: transparent;
   cursor: pointer;
   z-index: 1200;
+  outline: none;
 }
 
 .hamburger span {
@@ -376,19 +365,26 @@ nav {
   width: 100%;
   border-radius: 4px;
   background: #333;
-  transition: all 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .hamburger span.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 10px);
+  transform: rotate(46deg) translate(5.5px, 12px);
+  width: 100%;
+  translate: 27%;
 }
 
 .hamburger span.open:nth-child(2) {
-  opacity: 0;
+  transform: rotate(312deg) translate(-4px, -3.5px);
+  width: 100%;
+  translate: 27%;
+  background-color: #58a6ff;
 }
 
 .hamburger span.open:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -12px);
+  transform: rotate(312deg) translate(5px, -11.6px);
+  width: 100%;
+  translate: 27%;
 }
 
 /* Navigation Links */
@@ -407,10 +403,12 @@ nav {
   text-decoration: none;
   color: #333;
   font-size: 1rem;
+  transition: font 0.4s ease;
 }
 
 .nav-links a:hover {
   color: #58a6ff;
+  font-size: larger;
 }
 
 .nav-menu {
@@ -430,24 +428,23 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
-  transition: background 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .theme-toggle:hover {
   background: rgba(0, 0, 0, 0.1);
+  border: #121212 1px solid;
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
-  color: currentColor;
+  width: 18px;
+  height: 18px;
+  color: black;
 }
 
 /* Theme Toggle */
-.theme-toggle-button {
+/*.theme-toggle-button {
   background: none;
 
   padding: 5px 10px;
@@ -457,7 +454,7 @@ nav {
 .theme-toggle-button:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
-}
+}*/
 
 .download-resume {
   background: none;
@@ -702,6 +699,14 @@ textarea {
   /*background: black;*/
   color: rgb(220, 215, 215);
   border-color: rgb(220, 215, 215);
+}
+
+.dark .icon {
+  color: white;
+}
+
+.dark .theme-toggle:hover {
+  border: white 1px solid;
 }
 
 .dark .modal-content {
