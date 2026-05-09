@@ -1,3 +1,37 @@
-# Source for the published github pages for my portfolio
+# Development repository for my personal portfolio
 
-See the development repository [HERE](https://github.com/alexpxcell/alexpxcell.github.io/tree/main)
+Visit the published github pages and source codes [HERE](https://github.com/alexWandugu/alexWandugu.github.io/tree/gh-pages)
+
+This is in development with Vue 3 in Vite.
+
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
