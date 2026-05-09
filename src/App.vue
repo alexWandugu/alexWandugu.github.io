@@ -772,10 +772,7 @@ footer {
     margin: 1rem 0;
   }
 
-  .theme-toggle-li {
-    position: absolute;
-    bottom: 2rem;
-  }
+  
 
   .hamburger {
     display: flex;
